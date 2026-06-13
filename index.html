@@ -567,6 +567,51 @@ body {
   .conv-result { font-size: 19px; }
   .btn { padding: 9px 16px; font-size: 13px; }
 }
+/* ── CONFIG HINT ── */
+.config-hint {
+  margin-bottom: 1rem;
+  animation: fadeUp .5s .04s ease both;
+}
+.config-hint-title {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--gray-400);
+  margin-bottom: 5px;
+}
+.config-hint-steps {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+/* ── LINK TIPO DE CAMBIO ── */
+.tc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: none;
+  opacity: .85;
+  transition: opacity var(--transition), gap var(--transition);
+}
+.tc-link svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  stroke: var(--orange);
+}
+.tc-link:hover {
+  opacity: 1;
+  gap: 7px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 </style>
 </head>
 <body>
@@ -585,6 +630,11 @@ body {
       <img src="https://i.imgur.com/02X9Kke.png" alt="Logo" width="50" />
     </div>
   </header>
+
+  <!-- Instrucción de configuración -->
+  <div class="config-hint">
+    <span class="config-hint-title">Configura tu calculadora</span>
+  </div>
 
   <!-- ════════════════════════════════════
        FILA 1 — Moneda | Tipo de Cambio | Valor del Punto
@@ -684,6 +734,13 @@ body {
             <span class="co-name">Balboa Panameño</span>
             <span class="co-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
           </li>
+          <li class="currency-option" role="option" tabindex="0"
+              data-value="BRL" data-symbol="R$" data-tc="5.70">
+            <span class="co-code">BRL</span>
+            <span class="co-sym">R$</span>
+            <span class="co-name">Real Brasileño</span>
+            <span class="co-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </li>
         </ul>
       </div><!-- /currency-dropdown -->
     </div>
@@ -692,17 +749,21 @@ body {
     <div class="card">
       <div class="field-label">
         <span class="dot"></span>
-        Tipo de Cambio (USD → <span id="tc-label">MXN</span>)
-        <div class="tooltip-wrap">
-          <span class="tooltip-icon">?</span>
-          <div class="tooltip-box">Unidades de moneda local<br>equivalentes a 1 USD.</div>
-        </div>
+        <span style="display:inline">Tipo de Cambio (USD→<span id="tc-label">MXN</span>)</span>
       </div>
       <div class="input-row">
         <!-- type=text para formato con separadores -->
         <input type="text" id="tc" value="17.50" inputmode="decimal" placeholder="17.00" autocomplete="off" />
         <span class="unit" id="tc-unit">MXN/USD</span>
       </div>
+      <a href="https://www.oanda.com/currency-converter/en/?from=USD&to=MXN&amount=1"
+         target="_blank" rel="noopener noreferrer" class="tc-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        Consulta el tipo de cambio aquí
+      </a>
     </div>
 
     <!-- Valor del punto -->
